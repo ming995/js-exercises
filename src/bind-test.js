@@ -9,13 +9,13 @@
 
 Function.prototype.myBind = function (context) {
     // 判断是否是函数调用
-    if(typeof this !== 'function') {
+    if (typeof this !== 'function') {
         throw new Error('Function.prototype.bind - what is trying to be bound is not callable')
     }
 
     let self = this;
     let arg = Array.prototype.slice.call(arguments, 1); // 获取第一个参数后面的所有参数，因为 bind 的第一个参数是指向 this 作用域的参数，而后面的参数则是返回函数的参数
-    
+
     let fnOp = {};
     // 这个函数是返回的函数
     let fnBind = function () {
@@ -26,5 +26,5 @@ Function.prototype.myBind = function (context) {
     fnOp.prototype = this.prototype;
     fnBind.prototype = new fnOp();
     return fnBind;
-    
+
 }
